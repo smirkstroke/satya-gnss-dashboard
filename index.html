@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satya-GNSS | Trust Monitor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div><strong>Satya-GNSS</strong><span>TRUST MONITOR</span></div>
+      </div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span>◫</span> Overview</a>
+      <a class="nav-item" href="#pillars"><span>⌁</span> Trust pillars</a>
+      <a class="nav-item" href="#events"><span>≋</span> Event log <span class="nav-count" id="eventCount">0</span></a>
+      <div class="sidebar-bottom">
+        <div class="node-status"><span class="pulse-dot"></span><div><b>Demo node</b><small>SIMULATED DATA</small></div></div>
+        <p>This is a local prototype. It does not connect to a GNSS receiver or control tower equipment.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">OPERATIONS / GNSS INTEGRITY</div>
+          <h1>Trust dashboard</h1>
+          <p class="subtitle">Monitor signal consistency and review simulated alerts.</p>
+        </div>
+        <div class="topbar-right">
+          <div class="live-tag"><span class="pulse-dot"></span> DEMO MODE</div>
+          <div class="time-box"><span class="muted">LOCAL TIME</span><strong id="clock">--:--:--</strong></div>
+        </div>
+      </header>
+
+      <section class="demo-banner">
+        <div class="banner-icon">ⓘ</div>
+        <div><strong>Prototype using synthetic data</strong><p>Scenario changes below are simulated examples, not proof of real-world jamming or spoofing detection.</p></div>
+        <span class="plan-badge">PLAN / DEMO</span>
+      </section>
+
+      <section id="overview" class="section">
+        <div class="section-heading">
+          <div><h2>System overview</h2><p>One score, four independent checks.</p></div>
+          <div class="last-update">Last update <strong id="lastUpdate">Just now</strong></div>
+        </div>
+        <div class="overview-grid">
+          <article class="card score-card">
+            <div class="card-topline"><span>OVERALL TRUST SCORE</span><span class="info-dot" title="Illustrative score based on the dossier formula">i</span></div>
+            <div class="score-row">
+              <div class="score-gauge" id="scoreGauge"><div class="gauge-inner"><strong id="trustScore">100</strong><span>/ 100</span></div></div>
+              <div class="score-description"><span id="statusBadge" class="status-badge trusted">TRUSTED</span><h3 id="statusTitle">Signals look consistent</h3><p id="statusText">All simulated checks are healthy.</p></div>
+            </div>
+            <div class="score-foot"><span>Confidence factor</span><strong id="confidenceValue">1.00</strong><span class="foot-divider"></span><span>Scoring model <b>V4 draft</b></span></div>
+          </article>
+
+          <article class="card metric-card">
+            <div class="metric-icon cyan">⌖</div><span class="metric-label">SATELLITES</span><div class="metric-value"><strong id="satellitesValue">18</strong><small>tracked</small></div>
+            <div class="metric-track"><span id="satelliteTrack" style="width:100%"></span></div><p id="satelliteNote">Good simulated visibility</p>
+          </article>
+          <article class="card metric-card">
+            <div class="metric-icon violet">⌁</div><span class="metric-label">HDOP</span><div class="metric-value"><strong id="hdopValue">0.9</strong><small>lower is better</small></div>
+            <div class="metric-track"><span id="hdopTrack" style="width:90%"></span></div><p id="hdopNote">Good simulated geometry</p>
+          </article>
+          <article class="card metric-card">
+            <div class="metric-icon amber">◷</div><span class="metric-label">DETECTION FLAG</span><div class="flag-value" id="flagValue">NONE</div><p id="flagNote">No simulated attack signature</p><div class="flag-foot"><span class="tiny-dot green"></span><span id="flagState">Monitoring</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section scenario-section">
+        <div class="section-heading"><div><h2>Run a demo scenario</h2><p>Choose a predefined test case to see how the dashboard responds.</p></div></div>
+        <div class="scenario-grid">
+          <button class="scenario-btn selected" data-scenario="normal"><span class="scenario-symbol green-text">✓</span><span><b>Normal reception</b><small>Healthy checks</small></span></button>
+          <button class="scenario-btn" data-scenario="weak"><span class="scenario-symbol amber-text">!</span><span><b>Weak signal</b><small>Lower visibility</small></span></button>
+          <button class="scenario-btn" data-scenario="spoofing"><span class="scenario-symbol red-text">↗</span><span><b>Spoofing-like</b><small>Position / timing mismatch</small></span></button>
+          <button class="scenario-btn" data-scenario="jamming"><span class="scenario-symbol red-text">≋</span><span><b>Jamming-like</b><small>Fix loss / low signal</small></span></button>
+          <button class="scenario-btn" data-scenario="missing"><span class="scenario-symbol gray-text">?</span><span><b>Missing data</b><small>Unavailable inputs</small></span></button>
+        </div>
+      </section>
+
+      <section id="pillars" class="section">
+        <div class="section-heading"><div><h2>Trust pillars</h2><p>Each pillar returns a health value from 0 to 1. Values here are simulated.</p></div><span class="mini-chip">4 CHECKS</span></div>
+        <div class="pillar-grid" id="pillarGrid">
+          <article class="card pillar-card"><div class="pillar-header"><span class="pillar-number">01</span><span class="pillar-state good">PASS</span></div><h3>Fixed location</h3><p>Compare reported position with surveyed site coordinates.</p><div class="pillar-score"><strong>1.00</strong><span>health</span></div><div class="pillar-bar"><span style="width:100%"></span></div><small class="pillar-note">Within expected range (simulated)</small></article>
+          <article class="card pillar-card"><div class="pillar-header"><span class="pillar-number">02</span><span class="pillar-state good">PASS</span></div><h3>Dual-band L1 / L5</h3><p>Check whether the two frequency-band solutions agree.</p><div class="pillar-score"><strong>1.00</strong><span>health</span></div><div class="pillar-bar"><span style="width:100%"></span></div><small class="pillar-note">Bands agree (simulated)</small></article>
+          <article class="card pillar-card"><div class="pillar-header"><span class="pillar-number">03</span><span class="pillar-state good">PASS</span></div><h3>GPS / NavIC clash</h3><p>Compare independently computed constellation solutions.</p><div class="pillar-score"><strong>1.00</strong><span>health</span></div><div class="pillar-bar"><span style="width:100%"></span></div><small class="pillar-note">Solutions agree (simulated)</small></article>
+          <article class="card pillar-card"><div class="pillar-header"><span class="pillar-number">04</span><span class="pillar-state good">PASS</span></div><h3>1-PPS timing</h3><p>Compare receiver pulse timing with the local hardware timer.</p><div class="pillar-score"><strong>1.00</strong><span>health</span></div><div class="pillar-bar"><span style="width:100%"></span></div><small class="pillar-note">Timing consistent (simulated)</small></article>
+        </div>
+      </section>
+
+      <section class="lower-grid section">
+        <article class="card trend-card">
+          <div class="section-heading compact"><div><h2>Trust history</h2><p>Recent scenario results in this browser session.</p></div><span class="mini-chip">SESSION</span></div>
+          <div class="chart-area"><div class="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div class="chart-content"><div class="chart-grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div id="historyBars" class="history-bars"></div></div></div>
+          <div class="chart-legend"><span><i class="legend-dot"></i> Trust score</span><span id="historyCount">1 data point</span></div>
+        </article>
+        <article class="card response-card">
+          <div class="section-heading compact"><div><h2>Operator response</h2><p>Mock NOC action — no external system is contacted.</p></div></div>
+          <div class="response-status"><div class="response-icon" id="responseIcon">✓</div><div><strong id="responseTitle">No action requested</strong><p id="responseDescription">The current score is outside the Critical band.</p></div></div>
+          <div class="response-detail"><span>Latest mock alert</span><strong id="latestAlert">No alert generated</strong></div>
+          <button class="primary-btn" id="safeModeBtn" type="button">Request Safe Mode (mock)</button>
+          <p class="microcopy">This button only records a local demo event. It cannot switch a real tower time source.</p>
+        </article>
+      </section>
+
+      <section id="events" class="section">
+        <div class="section-heading"><div><h2>Event log</h2><p>Local-only record of demo actions and scenario changes.</p></div><button class="text-btn" id="clearLogBtn" type="button">Clear log</button></div>
+        <div class="card event-card">
+          <div class="table-wrap"><table><thead><tr><th>TIME</th><th>EVENT</th><th>TRUST SCORE</th><th>CLASSIFICATION</th><th>TYPE</th></tr></thead><tbody id="eventTable"><tr><td colspan="5" class="empty-cell">No events yet.</td></tr></tbody></table></div>
+        </div>
+      </section>
+
+      <footer class="footer"><span>Satya-GNSS V4 · Dashboard prototype</span><span>Illustrative thresholds and weights are not validated measurements.</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
