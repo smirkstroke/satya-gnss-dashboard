@@ -1,57 +1,28 @@
-SATYA-GNSS DASHBOARD PROTOTYPE
-Beginner-friendly HTML + CSS + JavaScript demo
+SATYA-GNSS DASHBOARD PROTOTYPE — UI REFRESH (BUILD 02)
 
-WHAT THIS IS
-- A local dashboard prototype based on the Satya-GNSS V4 dossier.
-- Uses synthetic values and predefined scenarios.
-- Includes a Trust Score, four pillar cards, history bars, an event log, and a mock Safe Mode request.
-- Uses no server, Python, packages, account, or internet connection after the files are downloaded.
+CONTENTS
+- index.html: dashboard structure
+- styles.css: styling and responsive UI
+- script.js: demo scenario behavior
+
+RUN LOCALLY
+1. Extract this folder.
+2. Double-click index.html to open it in a modern browser.
+3. Use the scenario buttons to explore the synthetic examples.
+
+UPDATE YOUR EXISTING GITHUB REPOSITORY
+1. Download and extract this ZIP.
+2. Open your existing local satya-gnss-dashboard repository folder (the one GitHub Desktop manages).
+3. Copy index.html, styles.css, script.js, and README.txt from this folder into that repository folder.
+4. If Windows asks whether to replace the existing files, choose Replace the files in the destination.
+5. Open GitHub Desktop. Review the four changed files.
+6. Enter a commit summary such as: Refresh dashboard UI build 02
+7. Click Commit to main.
+8. Click Push origin (or the available Publish/Push button) to upload the commit.
+9. After the push succeeds, wait a minute and refresh the live GitHub Pages site. Use Ctrl+F5 for a hard refresh.
 
 IMPORTANT LIMITATIONS
-- This is not connected to a GNSS receiver, ESP32, NOC, telecom tower, or real-time source.
-- The scenario data and attack-like flags are simulated, not actual attack detection.
-- The dossier calls the weights and confidence thresholds illustrative/unvalidated.
-- The dashboard's mock Safe Mode button only records a local event. It cannot switch a real tower's time source.
-
-HOW TO RUN ON WINDOWS
-1. Download and extract satya_gnss_dashboard.zip.
-2. Open the extracted folder named satya_gnss_dashboard.
-3. Double-click index.html.
-4. It should open in your default browser (Edge or Chrome).
-5. Click Normal reception, Weak signal, Spoofing-like, Jamming-like, and Missing data to test the UI.
-6. Click "Request Safe Mode (mock)" to add a local demo event.
-7. Click "Clear log" to clear the event table and chart history.
-
-IF DOUBLE-CLICK DOES NOT OPEN IT
-1. Right-click index.html.
-2. Choose Open with > Microsoft Edge or Google Chrome.
-
-FILES
-- index.html: dashboard layout and text.
-- styles.css: colours, spacing, responsive layout.
-- script.js: demo scenarios, score formula, rendering and event log.
-- README.txt: these instructions.
-
-HOW THE SCORE IS CALCULATED
-Trust Score = round(100 × weighted pillar health × confidence factor)
-Confidence factor = 0.5 + 0.5 × Qsat × Qdop
-Qsat = min(1, satellites / 12)
-Qdop = 1.0 when HDOP <= 2; 0.7 when HDOP <= 5; otherwise 0.4.
-Pillar weights: 0.35, 0.20, 0.20, 0.25.
-Unavailable pillars are represented as 0.5, as described in the dossier.
-A fixed-location failure applies the dossier's draft cap of 59.
-Score bands: 80-100 Trusted; 60-79 Watch; 40-59 Suspicious; 0-39 Critical.
-
-FIRST CODE EDITS TO TRY
-- Open script.js in Notepad or VS Code.
-- Find the `scenarios` object near the top.
-- Change a value such as `satellites: 18` or `hdop: 0.9`.
-- Save the file, then refresh index.html in the browser.
-- Keep a copy of the original files before making changes.
-
-NEXT DEVELOPMENT STEPS
-1. Review the exact pillar thresholds with your team.
-2. Test the formula against the worked examples in the V4 dossier.
-3. Add a real data-input interface only after the receiver output format is confirmed.
-4. Connect a backend/mock NOC only after the standalone UI and score logic are reviewed.
-5. Record test evidence and label features BUILT only after they are implemented and verified.
+- This is a front-end prototype. It does not connect to a real GNSS receiver, ESP32, network operations centre, or tower equipment.
+- All satellite counts, HDOP, trust scores, and scenario flags are simulated examples.
+- The V4 weights and thresholds are illustrative and not validated measurements.
+- The Safe Mode control records a local mock event only; it does not control external equipment.
